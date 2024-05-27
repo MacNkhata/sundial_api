@@ -11,8 +11,13 @@
   "author": "Macdonald Nkhata",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "express": "^4.19.2",
     "express-session": "^1.18.0",
+    "joi": "^17.13.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.6.2",
+    "mongoose": "^8.4.0",
     "passport": "^0.7.0",
     "passport-google-oauth20": "^2.0.0"
   }
