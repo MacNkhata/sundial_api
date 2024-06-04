@@ -18,6 +18,7 @@ passport.use(
             googleId: profile.id,
             displayName: profile.displayName,
           });
+          console.log(user);
           await user.save();
         }
         return done(null, user);
@@ -33,8 +34,9 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser((id, done) => {
-  const user = user.findById((user) => user.id === id);
-  done(null, user);
+  User.findById(id, (err, user) => {
+    done(err, user);
+  });
 });
 
 export default passport;
