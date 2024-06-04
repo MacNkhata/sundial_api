@@ -22,8 +22,8 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/api/v1/auth/', auth);
-app.use('/api/v1/workouts/', workout);
+app.use('/api/v1/auth', auth);
+app.use('/api/v1/workouts', workout);
 
 // Connect to DB
 const uri = process.env.DB_CONNECTION;
