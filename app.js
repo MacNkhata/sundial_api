@@ -2,6 +2,7 @@ import express from 'express';
 import session from 'express-session';
 import passport from './config/passport.js';
 import auth from './routes/auth.js';
+import workout from './routes/workout.js';
 import mongoose from 'mongoose';
 
 const port = process.env.PORT || 8080;
@@ -21,9 +22,10 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Connect to DB
 app.use('/api/v1/auth/', auth);
+app.use('/api/v1/workouts/', workout);
 
+// Connect to DB
 const uri = process.env.DB_CONNECTION;
 mongoose.connect(uri).catch((err) => console.log(err));
 
