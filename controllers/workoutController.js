@@ -69,6 +69,23 @@ export const getOneWorkout = async (req, res) => {
   }
 };
 
+// Delete a workout
+export const updateWorkout = async (req, res) => {
+  try {
+    const exercise = await Workout.findOneAndUpdate(
+      { _id: req.params.id, user: req.user._id },
+      req.body,
+      { new: true, runValidators: true }
+    );
+    if (!exercise) {
+      return res.status(404).send('exercise not found.');
+    }
+    res.status(200).send(exercise);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+};
+
 // Get Exercises associated with a workout
 export const getWorkoutExercises = async (req, res) => {
   try {
