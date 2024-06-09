@@ -101,18 +101,3 @@ export const deleteWorkout = async (req, res) => {
     res.status(500).send(error);
   }
 };
-
-// Get Exercises associated with a workout
-export const getWorkoutExercises = async (req, res) => {
-  try {
-    const exercises = await Exercise.find({ workout: req.params.id });
-
-    if (!exercises.length) {
-      return res.status(404).send('No exercises were found for this workout');
-    }
-
-    res.status(200).send(exercises);
-  } catch (error) {
-    res.status(500).send(error);
-  }
-};
