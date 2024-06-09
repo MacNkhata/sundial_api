@@ -69,20 +69,36 @@ export const getOneWorkout = async (req, res) => {
   }
 };
 
-// Delete a workout
+// Update a workout
 export const updateWorkout = async (req, res) => {
   try {
-    const exercise = await Workout.findOneAndUpdate(
+    const workout = await Workout.findOneAndUpdate(
       { _id: req.params.id, user: req.user._id },
       req.body,
       { new: true, runValidators: true }
     );
-    if (!exercise) {
-      return res.status(404).send('exercise not found.');
+    if (!workout) {
+      return res.status(404).send('Workout not found.');
     }
-    res.status(200).send(exercise);
+    res.status(200).send(workout);
   } catch (error) {
     res.status(400).send(error);
+  }
+};
+
+// Delete a workout
+export const deleteWorkout = async (req, res) => {
+  try {
+    const workout = await Workout.findOneAndDelete({
+      _id: req.params.id,
+      user: req.user._id,
+    });
+    if (!workout) {
+      return res.status(404).send('Workout not found');
+    }
+    res.status(200).send('Workout deleted');
+  } catch (error) {
+    res.status(500).send(error);
   }
 };
 

@@ -2,6 +2,10 @@ import jwt from 'jsonwebtoken';
 import User from '../models/User.js';
 
 const auth = async (req, res, next) => {
+  if (!req.header('Authorization')) {
+    return res.status(401).send('Access Denied');
+  }
+
   const token = req.header('Authorization').replace('Bearer ', '');
   if (!token) {
     return res.status(401).send('Access Denied');
