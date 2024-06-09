@@ -1,5 +1,6 @@
 import express from 'express';
 import passport from '../config/passport.js';
+import swagger from 'swagger-jsdoc';
 import {
   register,
   login,
@@ -8,8 +9,25 @@ import {
 } from '../controllers/authController.js';
 
 const router = express.Router();
-
+/**
+ * @swagger
+ * auth/register:
+ *   post:
+ *     description: registers a user to the system
+ *     responses:
+ *       201:
+ *         description: Returns the created user object.
+ */
 router.post('/register', register);
+/**
+ * @swagger
+ * auth/login:
+ *   post:
+ *     description: registers a user to the system
+ *     responses:
+ *       201:
+ *         description: Returns the created user object.
+ */
 router.post('/login', login);
 
 router.get('/google', passport.authenticate('google', { scope: ['profile'] }));
