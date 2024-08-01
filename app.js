@@ -6,10 +6,15 @@ import passport from './config/passport.js';
 import auth from './routes/auth.js';
 import workout from './routes/workout.js';
 import swaggerSpec from './swagger.js';
+import cors from 'cors';
+import morgan from 'morgan';
 
 const port = process.env.PORT || 8080;
 
 const app = express();
+
+app.use(cors());
+app.use(morgan('combined'));
 
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 app.use(express.json());
