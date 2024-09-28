@@ -55,7 +55,7 @@ export const login = async (req, res) => {
   const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET, {
     expiresIn: '2w',
   });
-  res.header('auth-token', token).send({ token: token });
+  res.header('auth-token', token).send({ token: token, userId: user._id });
 };
 
 export const forgotPassword = async (req, res) => {
